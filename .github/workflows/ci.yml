@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     name: Test (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
+    runs-on: "${{ (matrix.os) == 'ubuntu-latest' && fromJSON('[\"self-hosted\",\"linux\",\"x64\"]') || (matrix.os) == 'macos-latest' && fromJSON('[\"self-hosted\",\"macOS\",\"ARM64\"]') || (matrix.os) }}"
     strategy:
       fail-fast: false
       matrix:
